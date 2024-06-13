@@ -33,3 +33,9 @@ function onSetLineText(idx,txt){
     setLineText(idx,txt)
     renderMeme()
 }
+
+function onDownloadImg(elLink) {
+    var imgContent = gElCanvas.toDataURL();
+    elLink.href = imgContent
+}
+
