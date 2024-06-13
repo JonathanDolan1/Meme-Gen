@@ -22,15 +22,15 @@ function renderImgs(){
 
 function onImgClicked(id){
     document.querySelector('.gallery').classList.add('hide')
-    setMeme()
-    renderMeme(getImgById(id))
+    setMeme(id)
+    renderMeme()
     document.querySelector('.editor').classList.remove('hide')
 }
 
-function renderMeme(img){
+function renderMeme(){
     const meme = getMeme()
-    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-    drawText('Text')
+    console.log(getImgById(meme.selectedImgId))
+    gCtx.drawImage(getImgById(meme.selectedImgId).toDateURL(), 0, 0, gElCanvas.width, gElCanvas.height)
 }
 
 function drawText(txt){

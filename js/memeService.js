@@ -25,9 +25,11 @@ function getMeme() {
 
 // functiopsetLineTxt()
 
-function setMeme(id,selectedLineIdx = 0,lines=[]) {
+function setMeme(selectedImgId,selectedLineIdx = 0,lines=[]) {
     gMeme = {
-        
+        selectedImgId,
+        selectedLineIdx,
+        lines
     }
 }
 
