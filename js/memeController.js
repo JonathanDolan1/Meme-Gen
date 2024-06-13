@@ -6,35 +6,30 @@ let gCtx
 function onInit(){
     gElCanvas= document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
-    renderImgs()
-}
-
-function renderImgs(){
-    const imgs = getImgs()
-    const imgsHtml = imgs.reduce((acc, img) => {
-        acc += `<img src="${img.url}" onclick="onImgClicked('${img.id}')">`
-        return acc
-        }, '')
-    const elImgsContainer = document.querySelector('.imgs-container')
-    console.log(imgsHtml);
-    elImgsContainer.innerHTML = imgsHtml
-}
-
-function onImgClicked(id){
-    document.querySelector('.gallery').classList.add('hide')
-    setMeme(id)
-    renderMeme()
-    document.querySelector('.editor').classList.remove('hide')
+    renderGallery()
 }
 
 function renderMeme(){
     const meme = getMeme()
-    console.log(getImgById(meme.selectedImgId))
-    gCtx.drawImage(getImgById(meme.selectedImgId).toDateURL(), 0, 0, gElCanvas.width, gElCanvas.height)
+    const img = new Image()
+    img.src = getImgById(meme.selectedImgId).url
+    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+    drawTexts(meme.lines)
 }
 
-function drawText(txt){
+function drawTexts(lines){
+    lines.forEach(line => {
+        drawText(line.txt)
+    });
+}
+
+function drawText(txt=''){
     gCtx.font = '20px Arial'
     gCtx.fillStyle = 'white'
-    gCtx.fillText(txt,250,50)
+    gCtx.fillText(txt,250-txt.length*5,50)
+}
+
+function onSetLineText(idx,txt){
+    setLineText(idx,txt)
+    renderMeme()
 }

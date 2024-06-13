@@ -15,23 +15,30 @@ let gMeme = {
             color: 'red'
         }
     ]
-
 }
+
 let gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
 function getMeme() {
     return gMeme
 }
 
-// functiopsetLineTxt()
-
-function setMeme(selectedImgId,selectedLineIdx = 0,lines=[]) {
-    gMeme = {
-        selectedImgId,
-        selectedLineIdx,
-        lines
-    }
+function setLineText(idx,txt){
+    if (!gMeme.lines[idx]) gMeme.lines[idx] = {}
+    gMeme.lines[idx].txt = txt
 }
+
+function setImg(selectedImgId){
+    gMeme.selectedImgId = selectedImgId
+}
+
+// function setMeme(selectedImgId,selectedLineIdx = 0,lines=[]) {
+//     gMeme = {
+//         selectedImgId,
+//         selectedLineIdx,
+//         lines
+//     }
+// }
 
 function getImgs(){
     return gImgs
