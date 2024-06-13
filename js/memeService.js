@@ -11,8 +11,15 @@ let gMeme = {
     lines: [
         {
             txt: 'I sometimes eat Falafel',
+            size: 30,
+            color: 'red',
+            pos: { x: 0, y: 50 }
+        },
+        {
+            txt: 'I love pasta',
             size: 20,
-            color: 'red'
+            color: 'green',
+            pos: { x: 0, y: 100 }
         }
     ]
 }
@@ -23,27 +30,48 @@ function getMeme() {
     return gMeme
 }
 
-function setLineText(idx,txt){
-    if (!gMeme.lines[idx]) gMeme.lines[idx] = {}
-    gMeme.lines[idx].txt = txt
+function setLinePos(line,posDiff){
+    line.pos.x += posDiff.x
+    line.pos.y += posDiff.y
 }
 
-function setImg(selectedImgId){
+function setLineText(txt) {
+    if (!gMeme.lines[gMeme.selectedLineIdx]) gMeme.lines[gMeme.selectedLineIdx] = {}
+    gMeme.lines[gMeme.selectedLineIdx].txt = txt
+}
+
+function setImg(selectedImgId) {
     gMeme.selectedImgId = selectedImgId
 }
 
-// function setMeme(selectedImgId,selectedLineIdx = 0,lines=[]) {
-//     gMeme = {
-//         selectedImgId,
-//         selectedLineIdx,
-//         lines
-//     }
-// }
+function setFontSize(diff) {
+    gMeme.lines[gMeme.selectedLineIdx].size += diff
+}
 
-function getImgs(){
+function addLine() {
+    gMeme.selectedLineIdx = gMeme.lines.length
+    gMeme.lines.push({
+        txt: 'Text',
+        size: 20,
+        color: 'green',
+        pos: { x:  (gMeme.selectedLineIdx+1)*50, y:  (gMeme.selectedLineIdx+1)*50 }
+    })
+}
+
+function switchLine(){
+    gMeme.selectedLineIdx++
+    if (gMeme.selectedLineIdx>gMeme.lines.length-1) gMeme.selectedLineIdx= 0
+    return gMeme.lines[gMeme.selectedLineIdx]
+}
+
+
+
+
+
+function getImgs() {
     return gImgs
 }
 
-function getImgById(id){
+function getImgById(id) {
     return gImgs.find(img => img.id === id)
 }

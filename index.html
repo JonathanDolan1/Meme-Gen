@@ -23,10 +23,15 @@
         <div class="canvas-container">
             <canvas width="500" height="500"></canvas>
         </div>
-        <input type="text" placeholder="Enter your text here" oninput="onSetLineText((0),(this.value))">
+        <input class="input-txt" type="text" placeholder="Enter your text here" oninput="onSetLineText((this.value))">
         <a class="btn" href="#" onclick="onDownloadImg(this)" download="my-meme.jpg">
             Download
         </a>
+        <button onclick="onSetFontSize(1)">Increase</button>
+        <button onclick="onSetFontSize(-1)">Decrease</button>
+        <input type="color" oninput="onSetColor(this.value)">
+        <button onclick="onAddLine()">Add line</button>
+        <button onclick="onSwitchLine()">Switch line</button>
     </section>
 
     <script src="js/memeService.js"></script>
