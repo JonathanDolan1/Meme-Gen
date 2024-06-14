@@ -31,10 +31,25 @@ function addTouchListeners() {
     gElCanvas.addEventListener('touchend', onUp)
 }
 
+function getClickedLine(pos) {
+    return getMeme().lines.find(line => {
+        gCtx.font = line.size + 'px Arial'
+        const width = gCtx.measureText(line.txt).width
+        const height = line.size
+        const left = line.pos.x
+        const top = line.pos.y - height / 2
+        const right = line.pos.x + width
+        const bottom = line.pos.y + height / 2
+        if (pos.x >= left && pos.x <= right && pos.y >= top && pos.y <= bottom) {
+            console.log('clickedLine:',line);
+            return line
+        }
+    })
+}
+
 function onDown(ev) {
     gStartPos = getEvPos(ev)
     gClickedLine = getClickedLine(gStartPos)
-    console.log(gClickedLine);
     if(!gClickedLine) return
     const elTextInput = document.querySelector('.input-txt')
     elTextInput.value = gClickedLine.txt
@@ -83,17 +98,6 @@ function getEvPos(ev) {
         }
     }
     return pos
-}
-
-function getClickedLine(pos) {
-    return getMeme().lines.find(line => {
-        gCtx.font = line.size + 'px Arial'
-        const width = gCtx.measureText(line.txt).width
-        const height = line.size
-        if (pos.x >= line.pos.x && pos.x <= width && pos.y <= line.pos.y*1.1 && pos.y >= line.pos.y - (height)) {
-            return line
-        }
-    })
 }
 
 function renderMeme() {
