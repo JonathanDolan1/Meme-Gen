@@ -29,7 +29,7 @@ let gMeme = {
             txt: 'I sometimes eat Falafel',
             size: 30,
             color: 'red',
-            font: 'Impact',
+            font: 'impact',
             txtAlign: 'start',
             pos: { x: 0, y: 50 }
         },
@@ -37,7 +37,7 @@ let gMeme = {
             txt: 'I love pasta',
             size: 20,
             color: 'green',
-            font: 'Impact',
+            font: 'impact',
             txtAlign: 'start',
             pos: { x: 0, y: 100 }
         }
@@ -118,7 +118,7 @@ function getImgs(filterBy) {
         return false
     })
     if (keywords.length === 0) return imgs
-    imgs = imgs.filter(img=>{
+    imgs = imgs.filter(img => {
         for (let i = 0; i < keywords.length; i++) {
             if (!img.keywords.includes(keywords[i])) return false
         }
@@ -155,7 +155,27 @@ function _createImg(id) {
     }
 }
 
-function increaseKeywordCount(keyword){
+function increaseKeywordCount(keyword) {
     if (!gKeywordSearchCountMap[keyword]) gKeywordSearchCountMap[keyword] = 0
     gKeywordSearchCountMap[keyword]++
+}
+
+function setFontFamily(fontFamily) {
+    getSelectedLine().font = fontFamily
+}
+
+function setTextAlign(align) {
+    switch (align) {
+        case 'left':
+            align = 'start'
+            break
+        case 'center':
+            align = 'center'
+            break
+        case 'right':
+            align = 'end'
+            break
+
+    }
+    getSelectedLine().txtAlign = align
 }

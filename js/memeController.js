@@ -167,6 +167,11 @@ function onSetFontSize(diff) {
     renderMeme()
 }
 
+function onSetFontFamily(fontFamily){
+    setFontFamily(fontFamily)
+    renderMeme()
+}
+
 function onSetColor(color) {
     getMeme().lines[getMeme().selectedLineIdx].color = color
     renderMeme()
@@ -196,4 +201,9 @@ function drawControlBox() {
     const height = gSelectedLine.size
     gCtx.strokeStyle = 'white'
     gCtx.strokeRect(gSelectedLine.pos.x, gSelectedLine.pos.y - height, width, height * 1.2)
+}
+
+function onSetTextAlign(align){
+    setTextAlign(align)
+    renderMeme()
 }
