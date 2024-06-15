@@ -3,7 +3,7 @@
 let gElCanvas
 let gCtx
 let gStartPos
-let gClickedLine
+let gSelectedLine
 
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
@@ -16,7 +16,7 @@ function onInit() {
     renderGallery()
     addMouseListeners()
     addTouchListeners()
-    gClickedLine = false
+    gSelectedLine = false
 }
 
 function addMouseListeners() {
@@ -31,33 +31,37 @@ function addTouchListeners() {
     gElCanvas.addEventListener('touchend', onUp)
 }
 
-function getClickedLine(pos) {
-    return getMeme().lines.find(line => {
-        gCtx.font = line.size + 'px Arial'
+function getClickedLineIdx(pos) {
+    return getMeme().lines.findIndex(line => {
+        gCtx.font = line.size + 'px ' + line.font
         const width = gCtx.measureText(line.txt).width
-        const height = line.size
+        const height = line.size * 1.2
         const left = line.pos.x
         const top = line.pos.y - height / 2
         const right = line.pos.x + width
         const bottom = line.pos.y + height / 2
         if (pos.x >= left && pos.x <= right && pos.y >= top && pos.y <= bottom) {
-            console.log('clickedLine:',line);
             return line
         }
     })
 }
 
 function onDown(ev) {
+    ev.preventDefault()
     gStartPos = getEvPos(ev)
-    gClickedLine = getClickedLine(gStartPos)
-    if(!gClickedLine) return
+    const clickedLineIdx = getClickedLineIdx(gStartPos)
+    if(clickedLineIdx===-1) return
+    gSelectedLine = getMeme().lines[clickedLineIdx]
+    switchLine(clickedLineIdx)
+    renderMeme()
+    drawControlBox()
     const elTextInput = document.querySelector('.input-txt')
-    elTextInput.value = gClickedLine.txt
-    
+    elTextInput.value = gSelectedLine.txt
+    elTextInput.focus()
 }
 
 function onMove(ev) {
-    if (!gClickedLine) return
+    if (!gSelectedLine) return
 
     const pos = getEvPos(ev)
     const posDiff = {
@@ -71,12 +75,13 @@ function onMove(ev) {
 }
 
 function onUp() {
-    gClickedLine = null
+    gSelectedLine = null
 }
 
 function moveLine(pos){
-    setLinePos(gClickedLine,pos)
+    setLinePos(gSelectedLine,pos)
     renderMeme()
+    drawControlBox()
 }
 
 function getEvPos(ev) {
@@ -87,11 +92,8 @@ function getEvPos(ev) {
     }
 
     if (TOUCH_EVS.includes(ev.type)) {
-        // Prevent triggering the mouse ev
         ev.preventDefault()
-        // Gets the first touch point
         ev = ev.changedTouches[0]
-        // Calc the right pos according to the touch screen
         pos = {
             x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
             y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
@@ -101,15 +103,15 @@ function getEvPos(ev) {
 }
 
 function renderMeme() {
-    const meme = getMeme()
     const img = new Image()
-    img.src = getImgById(meme.selectedImgId).url
+    img.src = getCurrImgUrl()
     gCtx.beginPath()
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-    drawTexts(meme.lines)
+    drawTexts()
 }
 
-function drawTexts(lines) {
+function drawTexts() {
+    const lines = getMemeLines()
     lines.forEach(line => {
         drawText(line)
     });
@@ -117,9 +119,13 @@ function drawTexts(lines) {
 
 function drawText(line) {
     gCtx.beginPath()
-    gCtx.font = line.size + 'px Arial'
+    gCtx.font = line.size + 'px ' + line.font
     gCtx.fillStyle = line.color
+    gCtx.strokeStyle = 'black'
+    gCtx.lineWidth = 2
+    gCtx.textAlign = line.txtAlign
     gCtx.fillText(line.txt, line.pos.x, line.pos.y)
+    gCtx.strokeText(line.txt, line.pos.x, line.pos.y)
 }
 
 function onSetLineText(txt) {
@@ -138,7 +144,7 @@ function onSetFontSize(diff) {
 }
 
 function onSetColor(color) {
-    gCtx.fillStyle = color
+    getMeme().lines[getMeme().selectedLineIdx].color = color
     renderMeme()
 }
 
@@ -151,19 +157,19 @@ function onAddLine() {
 }
 
 function onSwitchLine() {
-    const line = switchLine()
+    gSelectedLine = switchLine()
     renderMeme()
-    drawControlBox(line)
+    drawControlBox()
     const elTextInput = document.querySelector('.input-txt')
-    elTextInput.value = line.txt
+    elTextInput.value = gSelectedLine.txt
     elTextInput.focus()
 }
 
-function drawControlBox(line) {
+function drawControlBox() {
     gCtx.beginPath()
-    gCtx.font = line.size + 'px Arial'
-    const width = gCtx.measureText(line.txt).width
-    const height = line.size * 1.2
+    gCtx.font = gSelectedLine.size + 'px ' + gSelectedLine.font
+    const width = gCtx.measureText(gSelectedLine.txt).width
+    const height = gSelectedLine.size
     gCtx.strokeStyle = 'white'
-    gCtx.strokeRect(line.pos.x, line.pos.y - height, width, height * 1.2)
+    gCtx.strokeRect(gSelectedLine.pos.x, gSelectedLine.pos.y - height, width, height*1.2)
 }
