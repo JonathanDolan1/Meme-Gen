@@ -9,14 +9,38 @@ const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
 
 function onInit() {
+    renderKeywords()
+    renderGallery()
+
+    gSelectedLine = false
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
     console.log(gCtx);
     gCtx.fillStyle = 'white'
-    renderGallery()
+    resizeCanvas()
+    window.addEventListener('resize', () => {
+        resizeCanvas()
+        renderMeme()
+    })
     addMouseListeners()
     addTouchListeners()
-    gSelectedLine = false
+    renderStickers()
+}
+
+function renderStickers(){
+    const stickers = getStickers()
+    const strHTML = stickers.reduce((acc,sticker)=>{
+        acc += `<button>${sticker}</button>`
+        return acc
+    },'')
+    const elStickersContainer = document.querySelector('.stickers-container')
+    elStickersContainer.innerHTML = strHTML
+}
+
+function resizeCanvas() {
+    var elContainer = document.querySelector('.canvas-container')
+    gElCanvas.width = elContainer.offsetWidth - 20
+    gElCanvas.height = elContainer.offsetHeight - 20
 }
 
 function addMouseListeners() {
@@ -50,7 +74,7 @@ function onDown(ev) {
     ev.preventDefault()
     gStartPos = getEvPos(ev)
     const clickedLineIdx = getClickedLineIdx(gStartPos)
-    if(clickedLineIdx===-1) return
+    if (clickedLineIdx === -1) return
     gSelectedLine = getMeme().lines[clickedLineIdx]
     switchLine(clickedLineIdx)
     renderMeme()
@@ -78,8 +102,8 @@ function onUp() {
     gSelectedLine = null
 }
 
-function moveLine(pos){
-    setLinePos(gSelectedLine,pos)
+function moveLine(pos) {
+    setLinePos(gSelectedLine, pos)
     renderMeme()
     drawControlBox()
 }
@@ -171,5 +195,5 @@ function drawControlBox() {
     const width = gCtx.measureText(gSelectedLine.txt).width
     const height = gSelectedLine.size
     gCtx.strokeStyle = 'white'
-    gCtx.strokeRect(gSelectedLine.pos.x, gSelectedLine.pos.y - height, width, height*1.2)
+    gCtx.strokeRect(gSelectedLine.pos.x, gSelectedLine.pos.y - height, width, height * 1.2)
 }

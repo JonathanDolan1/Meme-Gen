@@ -9,10 +9,10 @@
 @import url(basics/helpers.css);
 @import url(basics/layouts.css);
 
-/* @import url(components/main-header.css);
-@import url(components/logo.css);
-@import url(components/card.css);
-@import url(components/page-nav-container.css);
-@import url(components/footer.css); */
+@import url(components/main-header.css);
+@import url(components/gallery.css);
+@import url(components/canvas-container.css);
+@import url(components/ops-container.css);
+/* @import url(components/footer.css); */
 
 @import url(mq/mq.css);

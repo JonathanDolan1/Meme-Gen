@@ -1,21 +1,7 @@
 .hide{
-    display: none;
+    display: none !important;
 }
 
-.flex {
-    display: flex;
-}
-
-.space-between {
-    justify-content: space-between;
-}
-
-.align-items {
-    align-items: center;
-}
-
-.clean-list{
-    margin:0;
-    padding:0;
-    list-style-type: none;
+.pill{
+    border-radius: 2em;
 }

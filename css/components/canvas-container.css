@@ -1,0 +1,11 @@
+.canvas-container{
+    width: 45vw;
+    height: 45vw;
+    background-color: #383b42;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+canvas{
+    border-radius: 10px;
+}

@@ -1,0 +1,26 @@
+.gallery {
+    border-radius: 10px;
+    background-color: #383b42;
+    padding: 20px;
+    color: white;
+}
+
+.gallery .search {
+    background-color: #22252c;
+    font-size: inherit;
+    padding-inline:2em;
+    color:inherit
+}
+
+.gallery .keywords-container{
+ background-color: #87898d;
+ padding-inline:10px;
+}
+
+.btn-more{
+    background-image: linear-gradient(-86deg, #33bd6d 0%, #0b97b9 100%);
+}
+
+.keyword.marked{
+    color:yellow;
+}

@@ -9,34 +9,71 @@
 </head>
 
 <body onload="onInit()">
-    <header>
-        <h1>Meme Generator</h1>
+    <header class="main-header main-header-layout">
+        <div class="logo">Meme Generator</div>
+        <nav class="main-nav main-nav-layout">
+            <button>Gallery</button>
+            <button>About</button>
+        </nav>
     </header>
 
+
     <section class="gallery">
-        <div class="imgs-container">
-  
+        <section class="filters-container filters-container-layout">
+            <input type="text" class="search pill" placeholder="Search" oninput="onSetFilterBySearch(this.value)">
+            <section class="section-keywords section-keywords-layout">
+                <div class="keywords-container pill"></div>
+                <button class="btn-more">More</button>
+            </section>
+        </section>
+        <div class="imgs-container imgs-container-layout">
+
         </div>
     </section>
 
-    <section class="editor hide">
+    <section class="editor editor-layout hide">
         <div class="canvas-container">
             <canvas width="500" height="500"></canvas>
         </div>
-        <input class="input-txt" type="text" placeholder="Enter your text here" oninput="onSetLineText((this.value))">
-        <a class="btn" href="#" onclick="onDownloadImg(this)" download="my-meme.jpg">
-            Download
-        </a>
-        <button onclick="onSetFontSize(1)">Increase</button>
-        <button onclick="onSetFontSize(-1)">Decrease</button>
-        <input type="color" oninput="onSetColor(this.value)">
-        <button onclick="onAddLine()">Add line</button>
-        <button onclick="onSwitchLine()">Switch line</button>
+        <div class="ops-container ops-container-layout">
+            <input class="input-txt" type="text" placeholder="Enter your text here"
+                oninput="onSetLineText((this.value))">
+            <div class="btns-container">
+                <button class="switch-line" onclick="onSwitchLine()"></button>
+                <button class="add-line" onclick="onAddLine()"></button>
+                <button class="delete-line" onclick="onDeleteLine()"></button>
+            </div>
+            <div class="txt-style-btns-container txt-style-btns-container-layout">
+                <button class="increase" onclick="onSetFontSize(1)"></button>
+                <button class="decrease" onclick="onSetFontSize(-1)"></button>
+                <button class="align-left" onclick="onAlignText('left')"></button>
+                <button class="align-center" onclick="onAlignText('center')"></button>
+                <button class="align-right" onclick="onAlignText('right')"></button>
+                <select class="select-font-family" oninput="onSetFontFamily(this.value)">
+                    <option value="impact">Impact</option>
+                    <option value="arial">Arial</option>
+                </select>
+                <button class="input-stroke-color-btn" onclick="onInputStrokeColorBtnClick()"></button>
+                <input class="input-stroke-color hide" type="color" oninput="onStrokeColor(this.value)">
+                <button class="input-color-btn" onclick="onInputColorBtnClick()"></button>
+                <input class="input-color hide" type="color" oninput="onSetColor(this.value)">
+            </div>
+            <div class="stickers-container">
+
+            </div>
+            <div class="links-container">
+                <a class="share" href="#">Share</a>
+                <a class="download" href="#" onclick="onDownloadImg(this)" download="my-meme.jpg">
+                    Download
+                </a>
+            </div>
+        </div>
     </section>
 
     <script src="js/memeService.js"></script>
     <script src="js/galleryController.js"></script>
     <script src="js/memeController.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
