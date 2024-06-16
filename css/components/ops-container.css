@@ -48,7 +48,7 @@
 }
 
 .switch-line::before{
-    background-image: url('icons/up-and-down-opposite-double-arrows-side-by-side.png');   
+    background-image: url('/icons/up-and-down-opposite-double-arrows-side-by-side.png');   
 }
 
 .add-line {
@@ -58,7 +58,7 @@
 }
 
 .add-line::before {
-    background-image: url('icons/add.png');
+    background-image: url('/icons/add.png');
 }
 
 .delete-line {
@@ -68,7 +68,7 @@
 }
 
 .delete-line::before {
-    background-image: url('icons/trash.png');
+    background-image: url('/icons/trash.png');
 }
 
 .txt-style-btns-container {
@@ -82,31 +82,31 @@
 }
 
 .increase::before{
-    background-image: url('icons/increase\ font\ -\ icon.png');
+    background-image: url('/icons/increase\ font\ -\ icon.png');
 }
 
 .decrease::before{
-    background-image: url('icons/decrease\ font\ -\ icon.png');
+    background-image: url('/icons/decrease\ font\ -\ icon.png');
 }
 
 .align-left::before {
-    background-image: url('icons/align-to-left.png');
+    background-image: url('/icons/align-to-left.png');
 }
 
 .align-center::before {
-    background-image: url('icons/center-text-alignment.png');
+    background-image: url('/icons/center-text-alignment.png');
 }
 
 .align-right::before {
-    background-image: url('icons/align-to-right.png');
+    background-image: url('/icons/align-to-right.png');
 }
 
 .input-stroke-color-btn::before{
-    background-image: url('icons/text\ stroke.png');
+    background-image: url('/icons/text\ stroke.png');
 }
 
 .input-color-btn::before{
-    background-image: url('icons/paint-board-and-brush.png');
+    background-image: url('/icons/paint-board-and-brush.png');
 }
 
 .download {

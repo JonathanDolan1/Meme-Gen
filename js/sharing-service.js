@@ -1,4 +1,5 @@
 function onUploadImg() {
+    renderMeme()
     // Gets the image from the canvas
     const imgDataUrl = gElCanvas.toDataURL('image/jpeg')
 

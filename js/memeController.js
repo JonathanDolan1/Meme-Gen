@@ -158,6 +158,7 @@ function onSetLineText(txt) {
 }
 
 function onDownloadImg(elLink) {
+    renderMeme()
     var imgContent = gElCanvas.toDataURL();
     elLink.href = imgContent
 }

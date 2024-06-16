@@ -18,6 +18,7 @@ function renderGallery() {
 function onImgSelect(id) {
     document.querySelector('.gallery').classList.add('hide')
     setImg(id)
+    resizeCanvas()
     renderMeme()
     document.querySelector('.editor').classList.remove('hide')
 }
