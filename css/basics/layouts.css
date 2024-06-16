@@ -12,7 +12,6 @@
 
 .filters-container-layout{
     display: grid;
-    grid-template-columns: 1fr auto;
     padding: 2px;
     gap:10px;
 }
@@ -34,7 +33,7 @@
 
 .editor-layout{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    justify-content: ;
     gap: 20px;
     padding: 20px;
 }
