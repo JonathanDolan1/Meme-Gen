@@ -28,14 +28,17 @@
 
 .ops-container button,
 .select-font-family {
-    position: relative;
     background-color: white;
-    padding: 1em;
     border-radius: 0.5em;
     filter: drop-shadow(0.262px 4.993px 0px rgba(92, 92, 92, 0.55));
     box-shadow: inset 0px 5px 0px rgba(255, 255, 255, 0.58);
     font-size: inherit;
     text-align: center;
+}
+
+.ops-container .btn{
+    position: relative;
+    padding: 1em;
 }
 
 .switch-line {
@@ -68,6 +71,16 @@
     background-image: url('/icons/trash.png');
 }
 
+.txt-style-btns-container {
+    background-color: #19a59f;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.txt-style-btns-container > *{
+    height: 2em;
+}
+
 .increase::before{
     background-image: url('/icons/increase\ font\ -\ icon.png');
 }
@@ -96,12 +109,6 @@
     background-image: url('/icons/paint-board-and-brush.png');
 }
 
-.txt-style-btns-container {
-    background-color: #19a59f;
-    padding: 10px;
-    border-radius: 10px;
-}
-
 .download {
     filter: drop-shadow(0.314px 5.992px 0px #632687);
     box-shadow: inset 0px 5px 0px #ffffff;
@@ -120,6 +127,14 @@
     text-align: center;
     border-radius: 10px;
     color: white;
+}
+
+.sticker{
+    /* padding:50px; */
+    /* height: 1em;
+    width: 1em; */
+    /* line-height: 0.5em; */
+    /* text-align: center; */
 }
 
 /* .add-line::before{

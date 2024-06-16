@@ -8,19 +8,28 @@
 .gallery .search {
     background-color: #22252c;
     font-size: inherit;
-    padding-inline:2em;
-    color:inherit
+    padding-inline: 2em;
+    color: inherit
 }
 
-.gallery .keywords-container{
- background-color: #87898d;
- padding-inline:10px;
+.gallery .keywords-container {
+    background-color: #87898d;
+    padding-inline: 10px;
 }
 
-.btn-more{
+.btn-more {
     background-image: linear-gradient(-86deg, #33bd6d 0%, #0b97b9 100%);
 }
 
-.keyword.marked{
-    color:yellow;
+.keyword.marked {
+    color: yellow;
+}
+
+.keywords-container{
+    height: 2.5em;
+    overflow: hidden;
+}
+
+.keywords-container.more{
+    height: auto;
 }

@@ -30,7 +30,7 @@ function onInit() {
 function renderStickers(){
     const stickers = getStickers()
     const strHTML = stickers.reduce((acc,sticker)=>{
-        acc += `<button>${sticker}</button>`
+        acc += `<button class="sticker" onclick="onAddSticker(this.innerText)">${sticker}</button>`
         return acc
     },'')
     const elStickersContainer = document.querySelector('.stickers-container')
@@ -145,7 +145,7 @@ function drawText(line) {
     gCtx.beginPath()
     gCtx.font = line.size + 'px ' + line.font
     gCtx.fillStyle = line.color
-    gCtx.strokeStyle = 'black'
+    gCtx.strokeStyle = line.strokeColor
     gCtx.lineWidth = 2
     gCtx.textAlign = line.txtAlign
     gCtx.fillText(line.txt, line.pos.x, line.pos.y)
@@ -177,10 +177,23 @@ function onSetColor(color) {
     renderMeme()
 }
 
+function onSetStrokeColor(color){
+    setStrokeColor(color)
+    renderMeme()
+}
+
 function onAddLine() {
     addLine()
     const elTextInput = document.querySelector('.input-txt')
     elTextInput.value = 'Text'
+    elTextInput.focus()
+    renderMeme()
+}
+
+function onAddSticker(sticker){
+    addSticker(sticker)
+    const elTextInput = document.querySelector('.input-txt')
+    elTextInput.value = sticker
     elTextInput.focus()
     renderMeme()
 }
@@ -206,4 +219,19 @@ function drawControlBox() {
 function onSetTextAlign(align){
     setTextAlign(align)
     renderMeme()
+}
+
+function onInputColorBtnClick(){
+    const elInputColor = document.querySelector('.input-color')
+    elInputColor.click()
+}
+
+function onInputStrokeColorBtnClick(){
+    const elInputStrokeColor = document.querySelector('.input-stroke-color')
+    elInputStrokeColor.click()
+}
+
+function onGalleryClick(){
+    document.querySelector('.gallery').classList.toggle('hide')
+    document.querySelector('.editor').classList.toggle('hide')
 }

@@ -29,6 +29,7 @@ let gMeme = {
             txt: 'I sometimes eat Falafel',
             size: 30,
             color: 'red',
+            strokeColor: 'Black',
             font: 'impact',
             txtAlign: 'start',
             pos: { x: 0, y: 50 }
@@ -37,14 +38,15 @@ let gMeme = {
             txt: 'I love pasta',
             size: 20,
             color: 'green',
+            strokeColor: 'Black',
             font: 'impact',
             txtAlign: 'start',
             pos: { x: 0, y: 100 }
         }
-    ]
+    ],
 }
 
-let gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
+let gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2, 'laugh': 3, 'crazy':7,'putin': 1, 'smile': 6}
 
 let gStickers = ['😎', '🤯', '🤓', '😜', '😍', '🥹', '😱', '😏']
 
@@ -87,10 +89,26 @@ function setColor(color) {
     getSelectedLine().color = color
 }
 
+function setStrokeColor(color) {
+    getSelectedLine().strokeColor = color
+}
+
 function addLine() {
     gMeme.selectedLineIdx = gMeme.lines.length
     gMeme.lines.push({
         txt: 'Text',
+        size: 20,
+        color: 'white',
+        font: 'Impact',
+        txtAlign: 'start',
+        pos: { x: (gMeme.selectedLineIdx + 1) * 50, y: (gMeme.selectedLineIdx + 1) * 50 }
+    })
+}
+
+function addSticker(sticker) {
+    gMeme.selectedLineIdx = gMeme.lines.length
+    gMeme.lines.push({
+        txt: sticker,
         size: 20,
         color: 'white',
         font: 'Impact',

@@ -50,3 +50,7 @@ function onKeywordClick(keyword){
     renderGallery()
     renderKeywords()
 }
+
+function onMoreClick(){
+    document.querySelector('.keywords-container').classList.toggle('more')
+}

@@ -12,7 +12,7 @@
     <header class="main-header main-header-layout">
         <div class="logo">Meme Generator</div>
         <nav class="main-nav main-nav-layout">
-            <button>Gallery</button>
+            <button onclick="onGalleryClick()">Gallery</button>
             <button>About</button>
         </nav>
     </header>
@@ -23,7 +23,7 @@
             <input type="text" class="search pill" placeholder="Search" oninput="onSetFilterBySearch(this.value)">
             <section class="section-keywords section-keywords-layout">
                 <div class="keywords-container pill"></div>
-                <button class="btn-more">More</button>
+                <button class="btn-more" onclick="onMoreClick()">More</button>
             </section>
         </section>
         <div class="imgs-container imgs-container-layout">
@@ -39,9 +39,9 @@
             <input class="input-txt" type="text" placeholder="Enter your text here"
                 oninput="onSetLineText((this.value))">
             <div class="btns-container">
-                <button class="switch-line" onclick="onSwitchLine()"></button>
-                <button class="add-line" onclick="onAddLine()"></button>
-                <button class="delete-line" onclick="onDeleteLine()"></button>
+                <button class="switch-line btn" onclick="onSwitchLine()"></button>
+                <button class="add-line btn" onclick="onAddLine()"></button>
+                <button class="delete-line btn" onclick="onDeleteLine()"></button>
             </div>
             <div class="txt-style-btns-container txt-style-btns-container-layout">
                 <button class="increase" onclick="onSetFontSize(1)"></button>
@@ -54,15 +54,15 @@
                     <option value="arial">Arial</option>
                 </select>
                 <button class="input-stroke-color-btn" onclick="onInputStrokeColorBtnClick()"></button>
-                <input class="input-stroke-color hide" type="color" oninput="onStrokeColor(this.value)">
+                <input class="input-stroke-color hide" type="color" oninput="onSetStrokeColor(this.value)">
                 <button class="input-color-btn" onclick="onInputColorBtnClick()"></button>
                 <input class="input-color hide" type="color" oninput="onSetColor(this.value)">
             </div>
-            <div class="stickers-container">
+            <div class="stickers-container stickers-container-layout">
 
             </div>
             <div class="links-container">
-                <a class="share" href="#">Share</a>
+                <a class="share" href="#" onclick="onUploadImg()">Share</a>
                 <a class="download" href="#" onclick="onDownloadImg(this)" download="my-meme.jpg">
                     Download
                 </a>
